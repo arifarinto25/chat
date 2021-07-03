@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 
 const io = require("socket.io-client");
-const socket = io("ws://localhost:3000");
+const socket = io("ws://54.254.162.2:3000");
 
 app.get('/helloworld/:from/:to/:message', (req, res) => {
   res.send('Hello World!')
@@ -21,5 +21,5 @@ app.get('/helloworld/:from/:to/:message', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`cli-nodejs-api listening at http://localhost:${port}`)
+  console.log(`cli-nodejs-api listening at http://54.254.162.2:${port}`)
 });
