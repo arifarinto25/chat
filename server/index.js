@@ -3,7 +3,17 @@ const Redis = require("ioredis");
 const redisClient = new Redis();
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://54.254.162.2:8080",
+    origins: ["*"],
+  },
+  // optional, useful for custom headers
+  handlePreflightRequest: (req, res) => {
+    res.writeHead(200, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST",
+      "Access-Control-Allow-Headers": "my-custom-header",
+      "Access-Control-Allow-Credentials": true
+    });
+    res.end();
   },
   adapter: require("socket.io-redis")({
     pubClient: redisClient,
